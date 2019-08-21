@@ -1,0 +1,96 @@
+project:
+  buildStatus: ready
+  external: false
+  provider: github
+  deployment:
+    contentDirectory:
+      - content
+    buildCommand: gatsby build
+    builds:
+      master:
+        branch: master
+        weight: 1
+        id: _dfwp0tbax
+        environmentVariables: []
+    developmentCommand: gatsby develop
+    productionBranch: master
+    publishDirectory: public
+    packager: npm
+  type: gatsby
+  status: active
+  name: digitalhydra/gatsby-starter-blog-theme
+schemas:
+  - definitions:
+      fields:
+        - removable: true
+          system: false
+          widget: text
+          name: Title
+          type: string
+          required: true
+          value: ''
+          id: title
+          orderable: true
+        - type: string
+          required: true
+          value: ''
+          id: content
+          orderable: true
+          removable: true
+          system: false
+          widget: SlateEditor
+          name: Content
+        - widget: DatePicker
+          name: Date
+          type: string
+          required: true
+          value: ''
+          id: date
+          orderable: true
+          removable: true
+          system: false
+      schema:
+        id: post
+        name: Post
+    schema:
+      json:
+        properties:
+          content:
+            default: ''
+            type: string
+            title: Content
+          date:
+            title: Date
+            default: ''
+            type: string
+          title:
+            default: ''
+            type: string
+            title: Title
+        required:
+          - title
+          - content
+          - date
+        type: object
+      name: Post
+      ui:
+        title:
+          'ui:widget': text
+        'ui:order':
+          - title
+          - content
+          - date
+          - '*'
+        content:
+          'ui:widget': SlateEditor
+        date:
+          'ui:widget': DatePicker
+    type: content
+mapping:
+  content:
+    - schema: post
+      path: content/posts/hello-world.mdx
+    - schema: post
+      path: content/posts/my-second-post.mdx
+  dataset: []
+  form: []
